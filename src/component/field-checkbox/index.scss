@@ -17,7 +17,7 @@
             transition: border-color 0.3s;
 
             &:hover{
-                border-color: s.color('grey');
+                border-color: s.color(grey);
             }
 
             &[active] .field__icon{

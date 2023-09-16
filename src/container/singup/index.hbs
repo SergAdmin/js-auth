@@ -8,8 +8,9 @@
         <h1 class="page__title">Реєстрація</h1>
 
         <div class="form">
+
             <div class="form__item">                
-                {{> field action="signupForm.change" label="Ел. адреса" type='email' name='email' placeholder='Ваш email'}}
+                {{> field action="signupForm.change" label="Ел. адреса" type='email' autocomplete="email" name='email' placeholder='Ваш email'}}
                 <span name='email' class="form__error">Помилка</span>
             </div>
                 
@@ -20,8 +21,13 @@
             </div>
 
             <div class="form__item"> 
-                {{> field-password action="signupForm.change" label="Пароль" name='password' placeholder='Введіть пароль'}}
-                <span name='password' class="form__error">Помилка</span>
+                {{> field-password action="signupForm.change" label="Пароль" type="password" autocomplete="new-password" name='password' placeholder='Введіть пароль'}}
+                <span name='password' class="form__error">Помилка</span> 
+            </div>
+
+            <div class="form__item"> 
+                {{> field-password action="signupForm.change" label="Пароль ще раз" type="password" autocomplete="new-password" name='passwordAgain' placeholder='Введіть пароль'}}
+                <span name='passwordAgain' class="form__error">Помилка</span>
             </div>
  
             <div class="form__item"> 
@@ -33,9 +39,9 @@
                 
         </div>
 
-        <button onclick="signupForm.submit()" class="button" type="button">Зареєструватися</button>
+        <button onclick="signupForm.submit()" class="button button--disabled" type="button">Зареєструватися</button>
 
-        <span class="alert alert--error">Увага, помилка!</span>
+        <span class="alert alert--disabled">Увага, помилка!</span>
             
     </form>
 
