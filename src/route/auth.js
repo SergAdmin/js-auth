@@ -17,13 +17,13 @@ User.create({
 // router.get Створює нам один ентпоїнт
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
-router.get('/singup', function (req, res) {
+router.get('/signup', function (req, res) {
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('singup', {
+  res.render('signup', {
     // вказуємо назву контейнера
-    name: 'singup',
+    name: 'signup',
     // вказуємо назву компонентів
     component: [
       'back-button',
@@ -34,7 +34,7 @@ router.get('/singup', function (req, res) {
     ],
 
     // вказуємо назву сторінки
-    title: 'Singup page',
+    title: 'Signup page',
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
 
     // вказуємо дані,
