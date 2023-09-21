@@ -35,11 +35,11 @@ class User {
   static create(data) {
     const user = new User(data)
 
-    console.log('user-create', user)
+    console.log(user)
 
     this.#list.push(user)
 
-    console.log('user-list', this.#list)
+    console.log(this.#list)
 
     return user
   }

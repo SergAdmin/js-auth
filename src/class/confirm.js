@@ -16,7 +16,7 @@ class Confirm {
       this.delete(code)
     }, 24 * 60 * 60 * 1000) // 24 години у мілісекундах
 
-    console.log('Confirm', this.#list)
+    console.log(this.#list)
   }
 
   static delete = (code) => {

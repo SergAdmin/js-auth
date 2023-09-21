@@ -29,12 +29,9 @@ class Session {
   }
 
   static create = (user) => {
-    console.log('Session - open', user)
     const session = new Session(user)
 
     this.#list.push(session)
-
-    console.log('Session - create')
 
     return session
   }
@@ -51,4 +48,4 @@ module.exports = {
   Session,
 }
 
-console.log('Session', Session.generateCode())
+console.log(Session.generateCode())

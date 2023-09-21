@@ -8,9 +8,21 @@ const { Confirm } = require('../class/confirm')
 const { Session } = require('../class/session')
 
 User.create({
-  email: 'test@mail.com',
+  email: 'user@mail.com',
   password: 123,
   role: 1,
+})
+
+User.create({
+  email: 'admin@mail.com',
+  password: 123,
+  role: 2,
+})
+
+User.create({
+  email: 'developer@mail.com',
+  password: 123,
+  role: 3,
 })
 
 // ================================================================
@@ -56,12 +68,10 @@ router.get('/signup', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-//============================
-
 router.post('/signup', function (req, res) {
   const { email, password, role } = req.body
 
-  console.log('signup-post', req.body)
+  console.log(req.body)
 
   if (!email || !password || !role) {
     return res.status(400).json({
@@ -80,11 +90,7 @@ router.post('/signup', function (req, res) {
 
     const newUser = User.create({ email, password, role })
 
-    console.log('user created', newUser)
-
     const session = Session.create(newUser)
-
-    console.log('session created')
 
     Confirm.create(newUser.email)
 
@@ -124,12 +130,10 @@ router.get('/recovery', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-//============================
-
 router.post('/recovery', function (req, res) {
   const { email } = req.body
 
-  console.log('recovery-post', email)
+  console.log(email)
 
   if (!email) {
     return res.status(400).json({
@@ -183,12 +187,10 @@ router.get('/recovery-confirm', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-//============================
-
 router.post('/recovery-confirm', function (req, res) {
   const { password, code } = req.body
 
-  console.log('recovery-confirm-post', password, code)
+  console.log(password, code)
 
   if (!code || !password) {
     return res.status(400).json({
@@ -215,7 +217,7 @@ router.post('/recovery-confirm', function (req, res) {
 
     user.password = password
 
-    console.log('recovery-confirm-post', user)
+    console.log(user)
 
     const session = Session.create(user)
 
@@ -229,8 +231,6 @@ router.post('/recovery-confirm', function (req, res) {
     })
   }
 })
-
-//============================
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/signup-confirm', function (req, res) {
@@ -258,8 +258,6 @@ router.get('/signup-confirm', function (req, res) {
   })
   // ↑↑ сюди вводимо JSON дані
 })
-
-//============================
 
 router.post('/signup-confirm', function (req, res) {
   const { code, token } = req.body
@@ -333,8 +331,6 @@ router.get('/login', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-//============================
-
 router.post('/login', function (req, res) {
   const { email, password } = req.body
 
@@ -372,8 +368,6 @@ router.post('/login', function (req, res) {
     })
   }
 })
-
-//============================
 
 // Підключаємо роутер до бек-енду
 module.exports = router
