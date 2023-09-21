@@ -7,16 +7,16 @@ class Confirm {
   }
 
   static generateCode = () =>
-    Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000
+    Math.floor(Math.random() * 9000) + 1000
 
   static create = (data) => {
     this.#list.push(new Confirm(data))
 
     setTimeout(() => {
       this.delete(code)
-    }, 24 * 60 * 60 * 1000)
+    }, 24 * 60 * 60 * 1000) // 24 години у мілісекундах
 
-    console.log(this.#list)
+    console.log('Confirm', this.#list)
   }
 
   static delete = (code) => {
@@ -38,4 +38,6 @@ class Confirm {
   }
 }
 
-module.exports = { Confirm }
+module.exports = {
+  Confirm,
+}

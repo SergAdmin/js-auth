@@ -4,6 +4,8 @@ import {
   REG_EXP_PASSWORD,
 } from '../../script/form'
 
+import { saveSession } from '../../script/session'
+
 class SignupForm extends Form {
   FIELD_NAME = {
     EMAIL: 'email',
@@ -55,15 +57,15 @@ class SignupForm extends Form {
       }
     }
 
-    if (name === this.FIELD_NAME.IS_CONFIRM) {
-      if (Boolean(value) !== true) {
-        return this.FIELD_ERROR.IS_CONFIRM
-      }
-    }
-
     if (name === this.FIELD_NAME.ROLE) {
       if (isNaN(value)) {
         return this.FIELD_ERROR.ROLE
+      }
+    }
+
+    if (name === this.FIELD_NAME.IS_CONFIRM) {
+      if (Boolean(value) !== true) {
+        return this.FIELD_ERROR.NOT_CONFIRM
       }
     }
   }
@@ -75,6 +77,8 @@ class SignupForm extends Form {
       console.log(this.value)
 
       this.setAlert('progress', 'Завантаження...')
+
+      console.log('signup - submit')
 
       try {
         const res = await fetch('/signup', {
@@ -89,6 +93,8 @@ class SignupForm extends Form {
 
         if (res.ok) {
           this.setAlert('success', data.message)
+          saveSession(data.session)
+          location.assign('/')
         } else {
           this.setAlert('error', data.message)
         }

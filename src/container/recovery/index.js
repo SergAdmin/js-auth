@@ -35,8 +35,6 @@ class RecoveryForm extends Form {
     if (this.disabled === true) {
       this.validateAll()
     } else {
-      console.log(this.value)
-
       this.setAlert('progress', 'Завантаження...')
 
       try {
